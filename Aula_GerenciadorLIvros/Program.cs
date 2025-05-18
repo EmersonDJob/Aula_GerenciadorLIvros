@@ -1,58 +1,53 @@
 ﻿// See https://aka.ms/new-console-template for more information
-var livros = new List<string>();
+using Aula_GerenciadorLIvros.Models;
+using Aula_GerenciadorLIvros.Services;
+
+//var livros = new List<string>();
+
+
+LivroService livrosService = new LivroService();
 
 while (true)
 {
     Console.WriteLine("_________MENU PRINCIPAL_________");
-    Console.WriteLine("1- Cadastrar Livros");
-    Console.WriteLine("2- Listar Livros");
-    Console.WriteLine("3- Remover Livros");
-    Console.WriteLine("0- Sair");
+    Console.WriteLine();
+    Console.WriteLine("1 - Cadastrar Livros");
+    Console.WriteLine("2 - Listar Livros");
+    Console.WriteLine("3 - Remover Livros");
+    Console.WriteLine("0 - Sair");
+    Console.WriteLine();
 
     var opcao = Console.ReadLine();
 
     switch (opcao)
     {
         case "1":
-            Console.WriteLine("Digite o Título do Livro");
+            Console.Clear();
 
-            var nomeLivro = Console.ReadLine();
+            Console.WriteLine("Digite o nome do Livro");
 
-            livros.Add(nomeLivro);
-
-            Console.WriteLine("Cadastro Efetuado com sucesso");
+            livrosService.CadastroLivros();
 
             break;
+
         case "2":
-            foreach (var livro in livros)
-            {
-                Console.WriteLine(livro);
-            }
-            break;
+
+            livrosService.ListarLivros();
+
+            break;            
+
         case "3":
+            Console.Clear();
 
-            Console.WriteLine("DIgite o nome do Livro");
+            Console.WriteLine("Digite o nome do Livro");         
 
-            var removerLivro = Console.ReadLine();
-
-            var removido = livros.Remove(removerLivro);
-
-            if(removido)
-            {
-
-            Console.WriteLine("Removido com sucesso");
-
-            }else
-            {
-                Console.WriteLine("Livro não encontrado");
-            }
-
-                break;
+             break;
         case "0":
-            Console.WriteLine("Encerrando a aaplicação...");
+            Console.WriteLine("Encerrando a aplicação...");
             return;
         default:
-            Console.WriteLine("Op~ção Inválida");
+            Console.WriteLine();
+            Console.WriteLine("Opção Inválida");
             break;
     }
 }
